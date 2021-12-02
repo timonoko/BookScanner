@@ -1,0 +1,25 @@
+Echo vitun PNG
+
+mkdir kaksi
+rm kaksi/*
+j=102 
+scale=600
+size=500x680
+yla=27
+for x in *.pnm ; do
+ echo $x
+gm convert $x -rotate 90 -crop $size+40+$yla -resize $scale -normalize kaksi/k$j.png
+  j=$((j+2))
+done
+
+j=103
+for x in *.pnm ; do
+ echo $x
+gm convert $x -rotate 90 -crop $size+550+$yla -resize $scale -normalize kaksi/k$j.png
+  j=$((j+2))
+done
+
+
+cd kaksi
+gm convert *.png -format pdf Kunkku.pdf
+

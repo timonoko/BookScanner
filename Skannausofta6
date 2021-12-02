@@ -1,0 +1,23 @@
+mkdir kaksi
+rm kaksi/*
+j=102 
+scale=600
+size=500x760
+yla=27
+for x in *.png ; do
+ echo $x
+gm convert $x -rotate 90 -crop $size+20+$yla -resize $scale -normalize kaksi/k$j.jpg
+  j=$((j+2))
+done
+
+j=103
+for x in *.png ; do
+ echo $x
+gm convert $x -rotate 90 -crop $size+530+$yla -resize $scale -normalize kaksi/k$j.jpg
+  j=$((j+2))
+done
+
+
+cd kaksi
+gm convert *.jpg -format pdf Kunkku.pdf
+

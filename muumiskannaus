@@ -1,0 +1,33 @@
+mkdir kaksi
+rm kaksi/*
+j=2
+scale=600
+size=918x1400
+yla=44
+for x in *.png ; do
+echo  convert $x -rotate 90 -crop $size+50+$yla -resize $scale kaksi/k$j.png
+gm convert $x -rotate 90 -crop $size+50+$yla -resize $scale kaksi/k$j.png
+  j=$((j+2))
+done
+
+j=3
+for x in *.png ; do
+echo convert $x -rotate 90 -crop $size+1000+$yla -resize $scale kaksi/k$j.png
+gm convert $x -rotate 90 -crop $size+1000+$yla -resize $scale kaksi/k$j.png
+  j=$((j+2))
+done
+
+
+cd kaksi
+
+eka=1
+vika=$j
+a=$eka
+for b in $(seq -w $eka $vika); do
+echo   mv k$a.png v$b.png
+   mv k$a.png v$b.png
+   a=$((a+1))
+done
+
+gm convert *.png -format pdf MuumiPappaJaMeri.pdf
+
